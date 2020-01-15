@@ -48,7 +48,7 @@ rules:
 - apiGroups:
   - apps
   resourceNames:
-  - ansible-aws-operator
+  # - ansible-aws-operator
   - dynamodb
   resources:
   - deployments/finalizers

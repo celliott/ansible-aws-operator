@@ -11,7 +11,7 @@ docker-push :
 	$$(aws ecr get-login --no-include-email)
 	docker push $(IMAGE)
 
-install :
+install-operator :
 	@echo ....... Creating namespace .......
 	- kubectl create namespace ${NAMESPACE}
 	@echo ....... Applying CRDs .......
@@ -23,16 +23,7 @@ install :
 	@echo ....... Applying Operator .......
 	- kubectl apply -f deploy/operator.yaml -n ${NAMESPACE}
 
-dynamodb :
-	@echo ....... Creating the Database .......
-	- kubectl apply -f deploy/crs/ansible-aws.modaoperandi.com_v1alpha1_dynamodb_cr.yaml -n ${NAMESPACE}
-
-del-dynamodb :
-	@echo ....... Deleting the Database .......
-	- kubectl delete -f deploy/crs/ansible-aws.modaoperandi.com_v1alpha1_dynamodb_cr.yaml -n ${NAMESPACE}
-
-
-uninstall :
+uninstall-operator :
 	@echo ....... Uninstalling .......
 	@echo ....... Deleting CRDs.......
 	- kubectl delete -f deploy/crds/ansible-aws.modaoperandi.com_dynamodb_crd.yaml -n ${NAMESPACE}
@@ -42,6 +33,14 @@ uninstall :
 	- kubectl delete -f deploy/service_account.yaml -n ${NAMESPACE}
 	@echo ....... Deleting Operator .......
 	- kubectl delete -f deploy/operator.yaml -n ${NAMESPACE}
+
+dynamodb :
+	@echo ....... Creating the Database .......
+	- kubectl apply -f deploy/crs/ansible-aws.modaoperandi.com_v1alpha1_dynamodb_cr.yaml -n ${NAMESPACE}
+
+del-dynamodb :
+	@echo ....... Deleting the Database .......
+	- kubectl delete -f deploy/crs/ansible-aws.modaoperandi.com_v1alpha1_dynamodb_cr.yaml -n ${NAMESPACE}
 
 .PHONY: help
 help :
