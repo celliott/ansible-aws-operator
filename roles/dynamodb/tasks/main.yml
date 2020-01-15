@@ -1,2 +1,24 @@
 ---
-# tasks file for dynamodb
+- dynamodb_table:
+    name: "{{ env }}-{{ project }}-dynamodb-table"
+    region: "{{ aws_region }}"
+    hash_key_name: id
+    hash_key_type: STRING
+    range_key_name: create_time
+    range_key_type: NUMBER
+    read_capacity: "{{ dynamodb_table_read_capacity }}"
+    write_capacity: "{{ dynamodb_table_write_capacity }}"
+    tags:
+      Project: "{{ project }}"
+      Environment: "{{ env }}"
+      Owner: "{{ owner }}"
+    indexes:
+      - name: NamedIndex
+        type: global_include
+        hash_key_name: id
+        range_key_name: create_time
+        includes:
+          - other_field
+          - other_field2
+        read_capacity: 10
+        write_capacity: 10

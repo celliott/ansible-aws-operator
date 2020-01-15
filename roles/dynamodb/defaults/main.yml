@@ -1,2 +1,7 @@
 ---
-# defaults file for dynamodb
+project: demo
+env: sandbox
+owner: unowned
+aws_region: us-east-1
+dynamodb_table_read_capacity: 2
+dynamodb_table_write_capacity: 2
