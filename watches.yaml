@@ -1,0 +1,26 @@
+---
+- version: v1alpha1
+  group: ansible-aws.toobox.io
+  kind: DynamoDB
+  playbook: /opt/ansible/dynamodb.yml
+---
+- version: v1alpha1
+  group: ansible-aws.toobox.io
+  kind: KinesisStream
+  playbook: /opt/ansible/kinesis_stream.yml
+---
+- version: v1alpha1
+  group: ansible-aws.toobox.io
+  kind: S3Bucket
+  playbook: /opt/ansible/s3_bucket.yml
+---
+- version: v1alpha1
+  group: ansible-aws.toobox.io
+  kind: SNSTopic
+  playbook: /opt/ansible/sns_topic.yml
+---
+- version: v1alpha1
+  group: ansible-aws.toobox.io
+  kind: SQSQueue
+  playbook: /opt/ansible/sqs_queue.yml
+-

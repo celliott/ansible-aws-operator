@@ -1,0 +1,33 @@
+---
+
+- name: Converge
+  hosts: localhost
+  connection: local
+  vars:
+    ansible_python_interpreter: '{{ ansible_playbook_python }}'
+    deploy_dir: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}/deploy"
+    image_name: ansible-aws.toobox.io/ansible-aws-operator:testing
+    custom_resource: "{{ lookup('file', '/'.join([deploy_dir, 'crds/ansible-aws.toobox.io_v1alpha1_ansibleaws_cr.yaml'])) | from_yaml }}"
+  tasks:
+  - name: Create the ansible-aws.toobox.io/v1alpha1.AnsibleAWS
+    k8s:
+      namespace: '{{ namespace }}'
+      definition: "{{ lookup('file', '/'.join([deploy_dir, 'crds/ansible-aws.toobox.io_v1alpha1_ansibleaws_cr.yaml'])) }}"
+
+  - name: Get the newly created Custom Resource
+    debug:
+      msg: "{{ lookup('k8s', group='ansible-aws.toobox.io', api_version='v1alpha1', kind='AnsibleAWS', namespace=namespace, resource_name=custom_resource.metadata.name) }}"
+
+  - name: Wait 2m for reconciliation to run
+    k8s_info:
+      api_version: 'v1alpha1'
+      kind: 'AnsibleAWS'
+      namespace: '{{ namespace }}'
+      name: '{{ custom_resource.metadata.name }}'
+    register: reconcile_cr
+    until:
+    - "'Successful' in (reconcile_cr | json_query('resources[].status.conditions[].reason'))"
+    delay: 12
+    retries: 10
+
+- import_playbook: '{{ playbook_dir }}/../default/asserts.yml'

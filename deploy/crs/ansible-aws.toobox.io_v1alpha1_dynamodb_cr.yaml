@@ -1,0 +1,7 @@
+apiVersion: ansible-aws.toobox.io/v1alpha1
+kind: DynamoDB
+metadata:
+  name: example-dynamodb
+spec:
+  # Add fields here
+  size: 3
