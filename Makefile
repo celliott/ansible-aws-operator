@@ -1,6 +1,15 @@
 .DEFAULT_GOAL:=help
 SHELL:=/bin/bash
 NAMESPACE=demo
+IMAGE_TAG ?= v0.0.1
+IMAGE=923133779345.dkr.ecr.us-east-1.amazonaws.com/ansible-aws-operator:$(IMAGE_TAG)
+
+docker-build :
+	operator-sdk build $(IMAGE)
+
+docker-push :
+	$$(aws ecr get-login --no-include-email)
+	docker push $(IMAGE)
 
 install :
 	@echo ....... Creating namespace .......
