@@ -1,0 +1,10 @@
+apiVersion: ansible-aws.modaoperandi.com/v1alpha1
+kind: DynamoDB
+metadata:
+  name: sandbox-demo-dynamodb
+spec:
+  project: demo
+  env: sandbox
+  owner: devops
+  dynamodb_table_read_capacity: 2
+  dynamodb_table_write_capacity: 2

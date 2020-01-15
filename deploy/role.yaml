@@ -49,6 +49,7 @@ rules:
   - apps
   resourceNames:
   - ansible-aws-operator
+  - dynamodb
   resources:
   - deployments/finalizers
   verbs:
@@ -67,7 +68,7 @@ rules:
   verbs:
   - get
 - apiGroups:
-  - ansible-aws.toobox.io
+  - ansible-aws.modaoperandi.com
   resources:
   - '*'
   verbs:

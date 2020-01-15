@@ -1,7 +1,0 @@
-apiVersion: ansible-aws.toobox.io/v1alpha1
-kind: S3Bucket
-metadata:
-  name: example-sqs_queue
-spec:
-  # Add fields here
-  size: 3
