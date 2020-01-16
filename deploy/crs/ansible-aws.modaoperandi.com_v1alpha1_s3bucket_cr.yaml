@@ -1,0 +1,8 @@
+apiVersion: ansible-aws.modaoperandi.com/v1alpha1
+kind: S3Bucket
+metadata:
+  name: sandbox-demo-s3bucket
+spec:
+  project: demo
+  env: sandbox
+  owner: devops

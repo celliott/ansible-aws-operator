@@ -1,0 +1,11 @@
+---
+- s3_bucket:
+    name: "{{ env }}-{{ project }}-s3-bucket-n8kia"
+    versioning: yes
+    state: present
+    encryption: "aws:kms"
+    encryption_key_id: False
+    tags:
+      Project: "{{ project }}"
+      Environment: "{{ env }}"
+      Owner: "{{ owner }}"
