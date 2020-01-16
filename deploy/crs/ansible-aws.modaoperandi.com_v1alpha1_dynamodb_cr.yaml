@@ -1,7 +1,7 @@
 apiVersion: ansible-aws.modaoperandi.com/v1alpha1
 kind: DynamoDB
 metadata:
-  name: sandbox-demo-dynamodb
+  name: poc-demo-dynamodb
 spec:
   project: demo
   env: sandbox
