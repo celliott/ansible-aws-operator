@@ -1,6 +1,6 @@
 ---
 project: demo
-env: sandbox
+env: poc
 owner: unowned
 aws_region: us-east-1
 dynamodb_table_read_capacity: 2

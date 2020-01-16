@@ -1,0 +1,7 @@
+---
+project: demo
+env: poc
+owner: unowned
+kinesis_stream_retention_period: 24
+kinesis_stream_shards: 1
+kinesis_stream_wait_timeout: 300

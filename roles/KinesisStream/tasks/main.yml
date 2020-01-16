@@ -1,0 +1,13 @@
+---
+- kinesis_stream:
+    name: "{{ env }}-{{ project }}-stream-n8kia"
+    retention_period: "{{ kinesis_stream_retention_period }}"
+    shards: "{{ kinesis_stream_shards }}"
+    # encryption_state: enabled
+    # encryption_type: KMS
+    # key_id: alias/aws/kinesis
+    tags:
+      Env: development
+    wait: yes
+    wait_timeout: "{{ kinesis_stream_wait_timeout }}"
+  register: test_stream
