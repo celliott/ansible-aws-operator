@@ -8,9 +8,9 @@ Ansible Operator to provision AWS resources. See `deploy/crs` for examples of in
 
 # TODO
 - Add more AWS resources
-- Improve ansible roles to be idempotent
+- Improve ansible roles; idempotent
 - Add helm chart to deploy operator
-- Sort of Molecule tests
+- Sort Molecule tests
 
 ## Usage
 
