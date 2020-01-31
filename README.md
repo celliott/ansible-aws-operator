@@ -1,6 +1,6 @@
 # ansible-aws-operator
 
-Ansible Operator to provision AWS resources. See `deploy/crs` for examples of infra definitions.
+WIP; Ansible Operator to provision AWS resources. See `deploy/crs` for examples of infra definitions.
 
 >NOTES
 >- Currently this is setup to run in the `demo` namespace in POC cluster in `prod-rds` account
