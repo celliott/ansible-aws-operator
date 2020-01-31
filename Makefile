@@ -13,16 +13,16 @@ set-namespace :
 	kubectl config set-context --current --namespace=$(NAMESPACE)
 
 deploy : set-namespace
-	kubectl apply -f deploy/crds/ansible-aws.modaoperandi.com_dynamodb_crd.yaml --validate=false
-	kubectl apply -f deploy/crds/ansible-aws.modaoperandi.com_s3bucket_crd.yaml --validate=false
+	kubectl apply -f deploy/crds/dynamodb_crd.yaml --validate=false
+	kubectl apply -f deploy/crds/s3bucket_crd.yaml --validate=false
 	kubectl apply -f deploy/role.yaml
 	kubectl apply -f deploy/role_binding.yaml
 	kubectl apply -f deploy/service_account.yaml
 	kubectl apply -f deploy/operator.yaml
 
 delete : set-namespace
-	kubectl delete -f deploy/crds/ansible-aws.modaoperandi.com_dynamodb_crd.yaml
-	kubectl delete -f deploy/crds/ansible-aws.modaoperandi.com_s3bucket_crd.yaml
+	kubectl delete -f deploy/crds/dynamodb_crd.yaml
+	kubectl delete -f deploy/crds/s3bucket_crd.yaml
 	kubectl delete -f deploy/role.yaml
 	kubectl delete -f deploy/role_binding.yaml
 	kubectl delete -f deploy/service_account.yaml

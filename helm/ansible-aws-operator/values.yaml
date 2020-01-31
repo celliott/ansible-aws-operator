@@ -1,0 +1,41 @@
+# Default values for ansible-aws-operator.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+dynamodbs:
+  - name: resources
+    read_capacity: 2
+    write_capacity: 2
+  - name: orders
+    read_capacity: 10
+
+s3Buckets:
+  - resources
+  - orders
+
+replicaCount: 1
+
+image:
+  repository: 923133779345.dkr.ecr.us-east-1.amazonaws.com/ansible-aws-operator
+  version: v0.0.1
+  pullPolicy: Always
+
+ansible:
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+operator:
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+nodeSelector: {}

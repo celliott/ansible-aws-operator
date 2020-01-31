@@ -1,0 +1,3 @@
+# {{ include "ansible-aws-operator.name" . }}
+
+deployed!

@@ -7,7 +7,9 @@
     # encryption_type: KMS
     # key_id: alias/aws/kinesis
     tags:
-      Env: development
+      Project: "{{ project }}"
+      Environment: "{{ env }}"
+      Owner: "{{ owner }}"
     wait: yes
     wait_timeout: "{{ kinesis_stream_wait_timeout }}"
-  register: test_stream
+  register: stream

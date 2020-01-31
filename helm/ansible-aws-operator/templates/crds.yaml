@@ -1,0 +1,75 @@
+{{- if .Values.dynamodbs -}}
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: dynamodbs.ansible-aws.modaoperandi.com
+spec:
+  group: ansible-aws.modaoperandi.com
+  names:
+    kind: DynamoDB
+    listKind: DynamoDBList
+    plural: dynamodbs
+    singular: dynamodb
+  scope: Cluster #Namespaced
+  subresources:
+    status: {}
+  validation:
+    openAPIV3Schema:
+      type: object
+      x-kubernetes-preserve-unknown-fields: true
+  versions:
+  - name: v1alpha1
+    served: true
+    storage: true
+{{- end }}
+
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: kinesis-streams.ansible-aws.modaoperandi.com
+spec:
+  group: ansible-aws.modaoperandi.com
+  names:
+    kind: KinesisStream
+    listKind: KinesisStreamList
+    plural: kinesis-streams
+    singular: kinesis-stream
+  scope: Cluster
+  subresources:
+    status: {}
+  validation:
+    openAPIV3Schema:
+      type: object
+      x-kubernetes-preserve-unknown-fields: true
+  versions:
+  - name: v1alpha1
+    served: true
+    storage: true
+
+{{- if .Values.s3Buckets -}}
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: s3buckets.ansible-aws.modaoperandi.com
+spec:
+  group: ansible-aws.modaoperandi.com
+  names:
+    kind: S3Bucket
+    listKind: S3BucketList
+    plural: s3buckets
+    singular: s3bucket
+  scope: Cluster
+  subresources:
+    status: {}
+  validation:
+    openAPIV3Schema:
+      type: object
+      x-kubernetes-preserve-unknown-fields: true
+  versions:
+  - name: v1alpha1
+    served: true
+    storage: true
+{{- end }}
