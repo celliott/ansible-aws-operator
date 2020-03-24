@@ -1,0 +1,3 @@
+---
+# vars file for iam
+oidc_provider: "{{ lookup('env','OIDC_PROVIDER') }}"

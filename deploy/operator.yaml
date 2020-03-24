@@ -13,6 +13,9 @@ spec:
         name: ansible-aws-operator
     spec:
       serviceAccountName: ansible-aws-operator
+      automountServiceAccountToken: true
+      securityContext:
+        fsGroup: 65534
       containers:
         - name: ansible
           command:
@@ -20,15 +23,18 @@ spec:
           - /tmp/ansible-operator/runner
           - stdout
           # Replace this with the built image name
-          image: 923133779345.dkr.ecr.us-east-1.amazonaws.com/ansible-aws-operator:v0.0.1
+          image: 027081542926.dkr.ecr.us-east-1.amazonaws.com/ansible-aws-operator:v0.0.2
           imagePullPolicy: Always
           volumeMounts:
           - mountPath: /tmp/ansible-operator/runner
             name: runner
             readOnly: true
+          env:
+            - name: OIDC_PROVIDER
+              value: "oidc.eks.us-east-1.amazonaws.com/id/2E4F9F831377F6C0E966B99127DC895F"
         - name: operator
           # Replace this with the built image name
-          image: 923133779345.dkr.ecr.us-east-1.amazonaws.com/ansible-aws-operator:v0.0.1
+          image: 027081542926.dkr.ecr.us-east-1.amazonaws.com/ansible-aws-operator:v0.0.2
           imagePullPolicy: Always
           volumeMounts:
           - mountPath: /tmp/ansible-operator/runner
@@ -46,6 +52,8 @@ spec:
               value: "ansible-aws-operator"
             - name: ANSIBLE_GATHERING
               value: explicit
+            - name: OIDC_PROVIDER
+              value: "oidc.eks.us-east-1.amazonaws.com/id/2E4F9F831377F6C0E966B99127DC895F"
       volumes:
         - name: runner
           emptyDir: {}

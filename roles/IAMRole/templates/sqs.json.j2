@@ -1,0 +1,18 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Action": [
+        "sqs:Send*",
+        "sqs:ReceiveMessage",
+        "sqs:PurgeQueue",
+        "sqs:List*",
+        "sqs:Get*",
+        "sqs:DeleteMessageBatch"
+      ],
+      "Resource": "arn:aws:sqs:*:{{ aws_account_id }}:{{ project }}*"
+    }
+  ]
+}

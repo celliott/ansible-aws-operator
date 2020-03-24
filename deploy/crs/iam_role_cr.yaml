@@ -1,8 +1,8 @@
 apiVersion: ansible-aws.modaoperandi.com/v1alpha1
-kind: S3Bucket
+kind: IAMRole
 metadata:
-  name: demo-s3bucket
+  name: christest-iam-role
 spec:
-  project: demo
+  project: christest
   env: sandbox
   owner: devops

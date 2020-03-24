@@ -1,11 +1,12 @@
-kind: RoleBinding
+kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: ansible-aws-operator
 subjects:
 - kind: ServiceAccount
   name: ansible-aws-operator
+  namespace: kube-system
 roleRef:
-  kind: Role
+  kind: ClusterRole
   name: ansible-aws-operator
   apiGroup: rbac.authorization.k8s.io

@@ -1,15 +1,20 @@
 ---
-- version: v1alpha1
-  group: ansible-aws.modaoperandi.com
-  kind: DynamoDB
-  role: /opt/ansible/roles/DynamoDB
+# - version: v1alpha1
+#   group: ansible-aws.modaoperandi.com
+#   kind: DynamoDB
+#   role: /opt/ansible/roles/DynamoDB
 
 - version: v1alpha1
   group: ansible-aws.modaoperandi.com
-  kind: S3Bucket
-  role: /opt/ansible/roles/S3Bucket
-
-- version: v1alpha1
-  group: ansible-aws.modaoperandi.com
-  kind: KinesisStream
-  role: /opt/ansible/roles/KinesisStream
+  kind: IAMRole
+  role: /opt/ansible/roles/IAMRole
+#
+# - version: v1alpha1
+#   group: ansible-aws.modaoperandi.com
+#   kind: S3Bucket
+#   role: /opt/ansible/roles/S3Bucket
+#
+# - version: v1alpha1
+#   group: ansible-aws.modaoperandi.com
+#   kind: KinesisStream
+#   role: /opt/ansible/roles/KinesisStream

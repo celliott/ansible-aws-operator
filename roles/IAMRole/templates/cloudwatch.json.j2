@@ -1,0 +1,24 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Action": [
+        "logs:Put*",
+        "logs:List*",
+        "logs:Get*",
+        "logs:Describe*",
+        "logs:*Query",
+        "logs:*Filter*"
+      ],
+      "Resource": "arn:aws:logs::{{ aws_account_id }}:log-group:{{ project }}*"
+    },
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Action": "cloudwatch:PutMetricData",
+      "Resource": "*"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Action": [
+        "s3:Put*",
+        "s3:ListBucket",
+        "s3:Get*",
+        "s3:DeleteObject*"
+      ],
+      "Resource": [
+        "arn:aws:s3:::modaoperandi-{{ project }}*-{{ env }}/*",
+        "arn:aws:s3:::modaoperandi-{{ project }}*-{{ env }}"
+      ]
+    }
+  ]
+}

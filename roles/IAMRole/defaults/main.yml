@@ -1,0 +1,12 @@
+---
+project: ansible-aws-operator
+namespace: kube-system
+env: sandbox
+owner: devops
+iac_resources:
+  - cloudwatch
+  - dynamodb
+  - kinesis
+  - s3
+  - sns
+  - sqs

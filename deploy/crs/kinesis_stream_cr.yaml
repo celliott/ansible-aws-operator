@@ -1,8 +1,8 @@
 apiVersion: ansible-aws.modaoperandi.com/v1alpha1
 kind: KinesisStream
 metadata:
-  name: poc-demo-kinesis-stream
+  name: demo-kinesis-stream
 spec:
   project: demo
-  env: poc
+  env: sandbox
   owner: devops

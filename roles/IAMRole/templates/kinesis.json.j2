@@ -1,0 +1,27 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Consume",
+      "Effect": "Allow",
+      "Action": [
+        "kinesis:Subscribe*",
+        "kinesis:RegisterStreamConsumer",
+        "kinesis:List*",
+        "kinesis:Get*",
+        "kinesis:Describe*",
+        "kinesis:DeregisterStreamConsumer"
+      ],
+      "Resource": [
+        "arn:aws:kinesis:*:{{ aws_account_id }}:stream/*/consumer/*",
+        "arn:aws:kinesis:*:{{ aws_account_id }}:stream/*"
+      ]
+    },
+    {
+      "Sid": "Produce",
+      "Effect": "Allow",
+      "Action": "kinesis:Put*",
+      "Resource": "arn:aws:kinesis:*:{{ aws_account_id }}:stream/{{ project }}*"
+    }
+  ]
+}

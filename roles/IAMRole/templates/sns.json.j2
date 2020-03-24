@@ -1,0 +1,19 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Action": [
+        "sns:Unsubscribe",
+        "sns:Subscribe",
+        "sns:Publish",
+        "sns:List*",
+        "sns:Get*",
+        "sns:ConfirmSubscription",
+        "sns:CheckIfPhoneNumberIsOptedOut"
+      ],
+      "Resource": "arn:aws:sns:*:{{ aws_account_id }}:{{ project }}*"
+    }
+  ]
+}

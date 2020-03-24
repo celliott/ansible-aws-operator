@@ -1,0 +1,50 @@
+---
+- name: Get AWS Account ID
+  aws_caller_facts:
+  register: caller_info
+
+- name: Set vars
+  set_fact:
+    aws_account_id: "{{ caller_info.account }}"
+    # cluster_name: "{{ env }}-eks-cluster"
+
+# - name: Get EKS oidc-provider
+#   command: aws eks describe-cluster --name {{ cluster_name }} --query "cluster.identity.oidc.issuer" --output text
+#   register: oidc_provider_info
+#   changed_when: false
+
+# - name: Set vars
+#   set_fact:
+#     oidc_provider: "{{ oidc_provider_info.stdout | replace('https://','') }}"
+
+- name: Print oidc_provider
+  debug:
+    var: oidc_provider
+
+- name: Create IAM Managed Policies
+  iam_managed_policy:
+    policy_name: "{{ project }}-{{ item }}-eks"
+    policy_description: "{{ project }} project {{ item }} eks policy"
+    policy: "{{ lookup('template', '{{ item }}.json.j2') }}"
+    state: present
+  with_items: "{{ iac_resources }}"
+
+- name: Generate Policy ARNs
+  set_fact: arn="arn:aws:iam::{{ caller_info.account }}:policy/{{ project }}-{{ item }}-eks"
+  with_items: "{{ iac_resources }}"
+  register: arns_list
+
+- name: Make a list of policies arns
+  set_fact:
+    arns: "{{ arns_list.results | map(attribute='ansible_facts.arn') | list }}"
+
+- name: Print list of policies arns
+  debug:
+    var: arns
+
+- name: Create a role with trust relationship
+  iam_role:
+    name: "{{ project }}-eks"
+    assume_role_policy_document: "{{ lookup('template','role.json.j2') }}"
+    description: "{{ project }} role for IaC"
+    managed_policy: "{{ arns }}"

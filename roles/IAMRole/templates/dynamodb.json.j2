@@ -1,0 +1,23 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:UpdateItem",
+        "dynamodb:Scan",
+        "dynamodb:Query",
+        "dynamodb:PutItem",
+        "dynamodb:List*",
+        "dynamodb:Get*",
+        "dynamodb:Describe*",
+        "dynamodb:DeleteItem",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:BatchGet*"
+      ],
+      "Resource": "arn:aws:dynamodb:*:*:table/{{ project }}*"
+    }
+  ]
+}
