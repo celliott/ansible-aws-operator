@@ -8,6 +8,10 @@
   group: ansible-aws.modaoperandi.com
   kind: IAMRole
   role: /opt/ansible/roles/IAMRole
+  finalizer:
+    name: finalizer.ansible-aws.modaoperandi.com
+    vars:
+      state: absent
 #
 # - version: v1alpha1
 #   group: ansible-aws.modaoperandi.com
